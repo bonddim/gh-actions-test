@@ -1,0 +1,28 @@
+---
+name: Release
+
+on:
+  push:
+    tags:
+      - "*"
+    branches:
+      - 'main'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      # Pre-release on push to main branch
+      - if: github.ref == 'refs/heads/main'
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+      # Release on push tags
+      - if: startsWith(github.ref, 'refs/tags/')
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
