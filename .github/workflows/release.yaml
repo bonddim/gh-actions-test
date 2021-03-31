@@ -22,4 +22,3 @@ jobs:
           git commit -m "Update" file
           git tag --force latest
           git push origin HEAD:main --force --follow-tags --tags
-        shell: bash
