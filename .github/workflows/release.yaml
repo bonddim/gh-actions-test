@@ -5,8 +5,8 @@ on:
   push:
     tags:
       - '*'
-    branches:
-      - 'main'
+    # branches:
+    #   - 'main'
 
 jobs:
   release:
@@ -19,4 +19,4 @@ jobs:
           git config user.email github-actions@github.com
           git commit -m "Update" generated.txt
           git tag --force latest
-          git push --force --follow-tags --tags -u main origin
+          git push --force --follow-tags --tags -u origin main
