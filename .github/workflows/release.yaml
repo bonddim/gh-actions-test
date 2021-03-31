@@ -14,5 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          git branch
-          git log -n 1
+          git remote -v
+          git config user.name
+          git config user.email
