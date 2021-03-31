@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          echo $GIT_TAG_GLOBAL
-          echo $GIT_TAG_STEP
+          echo ${{ env.GIT_TAG_GLOBAL }}
+          echo ${{ env.GIT_TAG_STEP }}
           date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
