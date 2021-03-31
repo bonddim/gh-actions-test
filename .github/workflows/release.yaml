@@ -18,4 +18,5 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git commit -m "Update" generated.txt
-          git push --force --follow-tags --tags origin main
+          git tag --force latest
+          git push --force --follow-tags --tags -u main origin
