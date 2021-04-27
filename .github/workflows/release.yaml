@@ -2,6 +2,11 @@
 name: Release
 
 on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'version'
+        required: true
   push:
     tags:
       - '*'
@@ -16,9 +21,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          sed -Ei "s/^version: .*/version: ${{ env.GIT_TAG }}/" file
+          -Ei "s/^version: .*/version: ${{ github.event.inputs.version }}/" file
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git commit -m "Update" file
-          git tag --force latest
-          git push origin HEAD:main --force --follow-tags --tags
+          git commit -m "Release ${{ github.event.inputs.version }}" file
+
+      - uses: marvinpinto/action-automatic-releases@latest  # https://github.com/marketplace/actions/automatic-releases
+        with:
+          repo_token: '${{ secrets.GITHUB_TOKEN }}'
+          automatic_release_tag: ${{ github.event.inputs.version }}
+          prerelease: false
+          draft: true
