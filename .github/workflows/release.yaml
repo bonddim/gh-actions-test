@@ -25,7 +25,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git commit -m "Release ${{ github.event.inputs.version }}" file
-          git push origin main:releases
+          git push
 
       - uses: marvinpinto/action-automatic-releases@latest  # https://github.com/marketplace/actions/automatic-releases
         with:
