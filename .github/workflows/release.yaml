@@ -20,12 +20,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
       - run: |
-          sed -Ei "s/^version: .*/version: ${{ github.event.inputs.version }}/" file
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git commit -m "Release ${{ github.event.inputs.version }}" file
-          git push
+          if ! grep -w "${{ env.GIT_TAG }}" file &>/dev/null; then
+            sed -Ei "s/^version: .*/version: ${{ env.GIT_TAG }}/" file
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git commit -m "Release ${{ env.GIT_TAG }}" file
+            git push
+          fi
 
       - uses: marvinpinto/action-automatic-releases@latest  # https://github.com/marketplace/actions/automatic-releases
         with:
