@@ -27,7 +27,6 @@ jobs:
             git config user.name github-actions
             git config user.email github-actions@github.com
             git commit -m "Release ${{ env.GIT_TAG }}" file
-            git push
           fi
 
       - uses: marvinpinto/action-automatic-releases@latest  # https://github.com/marketplace/actions/automatic-releases
