@@ -3,21 +3,12 @@ name: Main
 
 on:
   push:
-    branches:
-      - 'main'
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ansible_collections/bonddim/linux
-
     steps:
       - uses: actions/checkout@v2
-        # with:
-        #   path: ansible_collections/bonddim/linux
       - run: |
-          pwd
-          ls
-          sed -Ei "s/^version: .*/version: ${{ env.GIT_TAG }}/" file
+          echo ${{ github.event.ref }}
+          echo ${{ github.event.ref_type }}
