@@ -19,4 +19,4 @@ jobs:
               - ubuntu/18.04
     steps:
       - run: echo ${{ matrix.distro.* }}
-      - run: echo ${{ matrix.distro.0 }}
+      # - run: echo ${{ matrix.distro.0 }}
