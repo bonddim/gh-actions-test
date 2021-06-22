@@ -1,17 +1,17 @@
-autolabeler:
-  - label: 'documentation'
-    files:
-      - '*.md'
-  - label: 'bug'
-    branch:
-      - '/fix\/.+/'
-    title:
-      - '/fix/i'
-  - label: 'enhancement'
-    branch:
-      - '/feature\/.+/'
-    body:
-      - '/feature/'
+# autolabeler:
+#   - label: 'documentation'
+#     files:
+#       - '*.md'
+#   - label: 'bug'
+#     branch:
+#       - '/fix\/.+/'
+#     title:
+#       - '/fix/i'
+#   - label: 'enhancement'
+#     branch:
+#       - '/feature\/.+/'
+#     body:
+#       - '/feature/'
 categories:
   - title: 'Major Changes'
     label: 'major'  #C6476B
