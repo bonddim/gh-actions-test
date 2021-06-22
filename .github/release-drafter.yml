@@ -1,0 +1,32 @@
+autolabeler:
+  - label: 'documentation'
+    files:
+      - '*.md'
+  - label: 'bug'
+    branch:
+      - '/fix\/.+/'
+    title:
+      - '/fix/i'
+  - label: 'enhancement'
+    branch:
+      - '/feature\/.+/'
+    body:
+      - '/feature/'
+categories:
+  - title: 'Major Changes'
+    label: 'major'  #C6476B
+  - title: 'Features'
+    label: 'enhancement'
+  - title: 'Bug Fixes'
+    label: 'bug'
+  - title: 'Documentation'
+    label: 'documentation'
+  - title: 'Continuous Integration'
+    label: 'ci' #0E8A16
+  - title: 'Deprecations'
+    label: 'deprecated'  #FEF2C0
+exclude-labels:
+  - 'skip-changelog'
+template: |
+  ## Changes
+  $CHANGES
