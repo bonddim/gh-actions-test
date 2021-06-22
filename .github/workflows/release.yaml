@@ -2,18 +2,8 @@
 name: Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'version'
-        required: true
-  push:
-    tags:
-      - '*'
-    # branches:
-    #   - 'main'
-# env:
-#   GIT_TAG: "${GITHUB_REF##*/}"
+  release:
+    types: ['published']
 
 jobs:
   release:
@@ -21,17 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: echo "GIT_TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
-      - run: |
-          if ! grep -w "${{ env.GIT_TAG }}" file &>/dev/null; then
-            sed -Ei "s/^version: .*/version: ${{ env.GIT_TAG }}/" file
-            git config user.name github-actions
-            git config user.email github-actions@github.com
-            git commit -m "Release ${{ env.GIT_TAG }}" file
-          fi
-
-      - uses: marvinpinto/action-automatic-releases@latest  # https://github.com/marketplace/actions/automatic-releases
-        with:
-          repo_token: '${{ secrets.GITHUB_TOKEN }}'
-          automatic_release_tag: ${{ github.event.inputs.version }}
-          prerelease: false
-          draft: false
+      - run: echo "${GIT_TAG}"
