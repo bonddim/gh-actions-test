@@ -4,3 +4,9 @@ documentation:
 
 root:
   - '*'
+
+ci:
+ - any: ['.github/workflows/*']
+
+skip-changelog:
+  - any: ['.github/*']
