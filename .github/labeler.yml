@@ -6,7 +6,7 @@ root:
   - '*'
 
 ci:
- - any: ['.github/workflows/*']
+  - any: ['.github/workflows/*']
 
 skip-changelog:
   - any: ['.github/*']
